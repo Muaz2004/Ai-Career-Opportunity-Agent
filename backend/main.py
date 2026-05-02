@@ -11,6 +11,7 @@ from dotenv import load_dotenv
 from tools.github_api import get_trending_repos
 from rag.vector_store import VectorStore
 from rag.llm_client import LLMClient
+from rag.embeddings import prepare_documents
 
 
 # load env first
@@ -51,6 +52,19 @@ def health():
 def get_trending_repos_endpoint():
     repos = get_trending_repos()
     return {"trending_repositories": repos}
+
+@app.post("/ingest")
+def ingest_data():
+    repos = get_trending_repos()
+
+    documents = prepare_documents(repos)
+
+    vector_store.add_documents(documents)
+
+    return {
+        "message": "Data ingested successfully",
+        "documents_added": len(documents)
+    }
 
 
 @app.post("/ask")
