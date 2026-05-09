@@ -1,64 +1,80 @@
 """
 agents/graph.py
-REAL LangGraph RAG Agent Pipeline
+Production-style LangGraph workflow
 """
 
+from typing import TypedDict, List, Dict, Any
+
 from langgraph.graph import StateGraph, END
-from typing import TypedDict
 
 from rag.vector_store import VectorStore
 from rag.llm_client import LLMClient
 
 
 
-# Shared State
+# Shared Agent State
+
 
 class AgentState(TypedDict):
     query: str
-    context: str
-    analysis: str
-    strategy: str
-    output: str
+
+    retrieved_docs: List[str]
+
+    analysis: Dict[str, Any]
+
+    strategy: Dict[str, Any]
+
+    final_response: str
 
 
 
-# Init tools (REAL)
-
-vector_store = VectorStore()
-llm = LLMClient()
+# Retrieval Agent
 
 
+def retrieval_agent(state: AgentState, vector_store: VectorStore):
 
-# 1. Data / Retrieval Agent
+    docs = vector_store.search(state["query"])
 
-def retrieval_agent(state: AgentState):
-    retriever = vector_store.get_retriever()
-
-    docs = retriever.invoke(state["query"])
-
-    context = "\n\n".join([doc.page_content for doc in docs])
+    retrieved_docs = [doc.page_content for doc in docs]
 
     return {
         **state,
-        "context": context
+        "retrieved_docs": retrieved_docs
     }
 
 
 
-# 2. Analysis Agent
+# Analysis Agent
 
-def analysis_agent(state: AgentState):
+
+def analysis_agent(state: AgentState, llm: LLMClient):
+
+    context = "\n\n".join(state["retrieved_docs"])
 
     prompt = f"""
-You are a technical analyst.
+You are a technology trend analyst.
 
-Analyze this context and extract:
-- trending skills
-- repeated technologies
-- patterns
+IMPORTANT:
+Only use the provided context.
+Do NOT use outside knowledge.
+
+Your task:
+1. Identify trending technologies
+2. Identify repeated programming languages
+3. Identify recurring themes
+4. Estimate demand strength
+
+Return STRICT JSON:
+
+{{
+  "trending_skills": [],
+  "languages": [],
+  "patterns": [],
+  "demand_level": ""
+}}
 
 Context:
-{state['context']}
+{context}
 """
 
     response = llm.invoke(prompt)
@@ -70,20 +86,29 @@ Context:
 
 
 
-# 3. Strategy Agent
+# Strategy Agent
 
-def strategy_agent(state: AgentState):
+
+def strategy_agent(state: AgentState, llm: LLMClient):
 
     prompt = f"""
-You are a career strategist.
+You are an AI career strategist.
 
-Based on this analysis:
-{state['analysis']}
+Based ONLY on this analysis:
 
-Give:
-- what to learn
-- what to build
-- roadmap steps
+{state["analysis"]}
+
+Generate career recommendations.
+
+Return STRICT JSON:
+
+{{
+  "must_learn": [],
+  "good_to_learn": [],
+  "project_ideas": [],
+  "avoid": [],
+  "roadmap": []
+}}
 """
 
     response = llm.invoke(prompt)
@@ -95,53 +120,63 @@ Give:
 
 
 
-# 4. Output Agent
+# Output Agent
+
 
 def output_agent(state: AgentState):
 
-    final = f"""
-CAREER INSIGHT REPORT
+    final_response = f"""
+ AI Career Intelligence Report
 
---- ANALYSIS ---
-{state['analysis']}
 
---- STRATEGY ---
-{state['strategy']}
+
+{state["analysis"]}
+
+
+
+
+{state["strategy"]}
 """
 
     return {
         **state,
-        "output": final
+        "final_response": final_response
     }
 
 
 
-# Build Graph
+# Graph Builder
 
-def build_graph():
+
+def build_graph(vector_store: VectorStore, llm: LLMClient):
 
     graph = StateGraph(AgentState)
 
-    graph.add_node("retrieve", retrieval_agent)
-    graph.add_node("analysis", analysis_agent)
-    graph.add_node("strategy", strategy_agent)
-    graph.add_node("output", output_agent)
+    graph.add_node(
+        "retrieve",
+        lambda state: retrieval_agent(state, vector_store)
+    )
+
+    graph.add_node(
+        "analyze",
+        lambda state: analysis_agent(state, llm)
+    )
+
+    graph.add_node(
+        "strategy",
+        lambda state: strategy_agent(state, llm)
+    )
+
+    graph.add_node(
+        "output",
+        output_agent
+    )
 
     graph.set_entry_point("retrieve")
 
-    graph.add_edge("retrieve", "analysis")
-    graph.add_edge("analysis", "strategy")
+    graph.add_edge("retrieve", "analyze")
+    graph.add_edge("analyze", "strategy")
     graph.add_edge("strategy", "output")
     graph.add_edge("output", END)
 
     return graph.compile()
-
-
-
-# Run helper (for testing)
-
-app_graph = build_graph()
-
-
-def run_agent(query: str):
-    return app_graph.invoke({"query": query})

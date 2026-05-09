@@ -9,13 +9,21 @@ from pydantic import BaseModel
 from dotenv import load_dotenv
 
 from tools.github_api import get_trending_repos
+
 from rag.vector_store import VectorStore
 from rag.llm_client import LLMClient
 from rag.embeddings import prepare_documents
 
+from agents.graph import build_graph
 
-# load env first
-load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), ".env"))
+
+# Load env first
+load_dotenv(
+    dotenv_path=os.path.join(
+        os.path.dirname(__file__),
+        ".env"
+    )
+)
 
 
 app = FastAPI(
@@ -23,15 +31,26 @@ app = FastAPI(
     version="1.0.0"
 )
 
+
+# Global services
 vector_store = None
 llm = None
+graph = None
 
 
 @app.on_event("startup")
 def startup():
-    global vector_store, llm
+
+    global vector_store, llm, graph
+
     vector_store = VectorStore()
+
     llm = LLMClient()
+
+    graph = build_graph(
+        vector_store=vector_store,
+        llm=llm
+    )
 
 
 class AskRequest(BaseModel):
@@ -40,21 +59,31 @@ class AskRequest(BaseModel):
 
 @app.get("/")
 def root():
-    return {"message": "AI Career Agent is running"}
+    return {
+        "message": "AI Career Agent is running"
+    }
 
 
 @app.get("/health")
 def health():
-    return {"status": "ok"}
+    return {
+        "status": "ok"
+    }
 
 
 @app.get("/trending")
 def get_trending_repos_endpoint():
+
     repos = get_trending_repos()
-    return {"trending_repositories": repos}
+
+    return {
+        "trending_repositories": repos
+    }
+
 
 @app.post("/ingest")
 def ingest_data():
+
     repos = get_trending_repos()
 
     documents = prepare_documents(repos)
@@ -70,33 +99,11 @@ def ingest_data():
 @app.post("/ask")
 def ask_agent(req: AskRequest):
 
-    retriever = vector_store.get_retriever()
+    result = graph.invoke({
+        "query": req.query
+    })
 
-   
-    context_docs = retriever.invoke(req.query)
-
-    context = "\n\n".join([doc.page_content for doc in context_docs])
-
-    prompt = f"""
-You are an AI Career Assistant.
-
-Use the context below to answer the question.
-
-Context:
-{context}
-
-Question:
-{req.query}
-
-Return:
-- clear explanation
-- key skills
-- roadmap if needed
-"""
-
-    response = llm.invoke(prompt)
     return {
         "question": req.query,
-        "response": response.content,
-        "sources_used": len(context_docs)
+        "response": result["final_response"]
     }
