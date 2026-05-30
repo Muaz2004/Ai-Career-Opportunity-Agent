@@ -4,8 +4,10 @@ LangChain Groq wrapper
 """
 
 import os
+from dotenv import load_dotenv
 from langchain_groq import ChatGroq
 
+load_dotenv()
 
 class LLMClient:
     def __init__(self):
