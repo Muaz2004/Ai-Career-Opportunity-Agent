@@ -15,6 +15,7 @@ from rag.llm_client import LLMClient
 from rag.embeddings import prepare_documents
 
 from agents.graph import build_graph
+from agents.intent import is_career_related
 
 
 # Load env first
@@ -95,15 +96,32 @@ def ingest_data():
         "documents_added": len(documents)
     }
 
-
 @app.post("/ask")
 def ask_agent(req: AskRequest):
 
+    query = req.query
+
+    #  INTENT CHECK (NEW LAYER)
+    if not is_career_related(query):
+
+        return {
+            "question": query,
+            "response": (
+                " This AI Career Agent only answers questions related to:\n"
+                "- programming\n"
+                "- AI / machine learning\n"
+                "- software engineering\n"
+                "- tech careers\n\n"
+                "👉Please ask a career or technology-related question."
+            )
+        }
+
+    # If valid → run LangGraph
     result = graph.invoke({
-        "query": req.query
+        "query": query
     })
 
     return {
-        "question": req.query,
+        "question": query,
         "response": result["final_response"]
     }
