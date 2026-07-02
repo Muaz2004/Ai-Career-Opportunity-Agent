@@ -17,6 +17,8 @@ from rag.embeddings import prepare_documents
 from agents.graph import build_graph
 from agents.intent import is_career_related
 
+from rag.job_ingestion import ingest_jobs
+
 
 # Load env first
 load_dotenv(
@@ -124,4 +126,15 @@ def ask_agent(req: AskRequest):
     return {
         "question": query,
         "response": result["final_response"]
+    }
+
+
+@app.post("/ingest/jobs")
+def ingest_job_dataset():
+
+    count = ingest_jobs()
+
+    return {
+        "message": "Job dataset ingested successfully",
+        "documents_added": count
     }
