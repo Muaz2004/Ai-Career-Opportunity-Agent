@@ -1,0 +1,162 @@
+[
+  {
+    "id": 1,
+    "trend": "AI Agents",
+    "description": "Autonomous multi-agent systems coordinating specialized tasks.",
+    "maturity": "High",
+    "category": "AI",
+    "recommended_to_learn": true
+  },
+  {
+    "id": 2,
+    "trend": "RAG",
+    "description": "Retrieval-Augmented Generation for grounded AI responses.",
+    "maturity": "High",
+    "category": "AI",
+    "recommended_to_learn": true
+  },
+  {
+    "id": 3,
+    "trend": "LangGraph",
+    "description": "Workflow orchestration for agentic applications.",
+    "maturity": "High",
+    "category": "AI",
+    "recommended_to_learn": true
+  },
+  {
+    "id": 4,
+    "trend": "LangChain",
+    "description": "LLM application framework and tooling.",
+    "maturity": "High",
+    "category": "AI",
+    "recommended_to_learn": true
+  },
+  {
+    "id": 5,
+    "trend": "Vector Databases",
+    "description": "Semantic search using embeddings.",
+    "maturity": "High",
+    "category": "AI",
+    "recommended_to_learn": true
+  },
+  {
+    "id": 6,
+    "trend": "MCP",
+    "description": "Model Context Protocol for tool integration.",
+    "maturity": "High",
+    "category": "AI",
+    "recommended_to_learn": true
+  },
+  {
+    "id": 7,
+    "trend": "Tool Calling",
+    "description": "LLMs invoking external APIs and tools.",
+    "maturity": "High",
+    "category": "AI",
+    "recommended_to_learn": true
+  },
+  {
+    "id": 8,
+    "trend": "Evaluation",
+    "description": "LLM evaluation and benchmarking.",
+    "maturity": "Medium",
+    "category": "AI",
+    "recommended_to_learn": true
+  },
+  {
+    "id": 9,
+    "trend": "Guardrails",
+    "description": "Safety and structured outputs.",
+    "maturity": "High",
+    "category": "AI",
+    "recommended_to_learn": true
+  },
+  {
+    "id": 10,
+    "trend": "Multimodal AI",
+    "description": "Vision, audio and text models.",
+    "maturity": "High",
+    "category": "AI",
+    "recommended_to_learn": true
+  },
+  {
+    "id": 11,
+    "trend": "On-device AI",
+    "description": "Edge inference and optimization.",
+    "maturity": "Medium",
+    "category": "AI",
+    "recommended_to_learn": true
+  },
+  {
+    "id": 12,
+    "trend": "AI Coding Assistants",
+    "description": "Developer productivity copilots.",
+    "maturity": "High",
+    "category": "AI",
+    "recommended_to_learn": true
+  },
+  {
+    "id": 13,
+    "trend": "Synthetic Data",
+    "description": "Generating data for ML training.",
+    "maturity": "Medium",
+    "category": "AI",
+    "recommended_to_learn": true
+  },
+  {
+    "id": 14,
+    "trend": "Fine-tuning",
+    "description": "Domain adaptation of LLMs.",
+    "maturity": "Medium",
+    "category": "AI",
+    "recommended_to_learn": true
+  },
+  {
+    "id": 15,
+    "trend": "Reasoning Models",
+    "description": "Improved planning and reasoning.",
+    "maturity": "High",
+    "category": "AI",
+    "recommended_to_learn": true
+  },
+  {
+    "id": 16,
+    "trend": "Knowledge Graphs",
+    "description": "Structured enterprise knowledge.",
+    "maturity": "Medium",
+    "category": "AI",
+    "recommended_to_learn": true
+  },
+  {
+    "id": 17,
+    "trend": "AI Security",
+    "description": "Prompt injection and model security.",
+    "maturity": "High",
+    "category": "AI",
+    "recommended_to_learn": true
+  },
+  {
+    "id": 18,
+    "trend": "GPU Optimization",
+    "description": "Inference optimization.",
+    "maturity": "Medium",
+    "category": "AI",
+    "recommended_to_learn": true
+  },
+  {
+    "id": 19,
+    "trend": "Serverless AI",
+    "description": "Scalable inference deployment.",
+    "maturity": "Medium",
+    "category": "AI",
+    "recommended_to_learn": true
+  },
+  {
+    "id": 20,
+    "trend": "Open-weight Models",
+    "description": "Community foundation models.",
+    "maturity": "High",
+    "category": "AI",
+    "recommended_to_learn": true
+  }
+]
