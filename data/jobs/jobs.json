@@ -1,0 +1,73 @@
+[
+    {
+        "title": "Junior AI Engineer",
+        "company": "OpenAI",
+        "location": "Remote",
+        "level": "Junior",
+        "skills": [
+            "Python",
+            "FastAPI",
+            "LangChain",
+            "LangGraph",
+            "Docker",
+            "Git"
+        ],
+        "description": "Build AI applications using retrieval augmented generation, agent workflows, REST APIs and vector databases."
+    },
+    {
+        "title": "Machine Learning Engineer",
+        "company": "Anthropic",
+        "location": "Remote",
+        "level": "Mid",
+        "skills": [
+            "Python",
+            "PyTorch",
+            "Transformers",
+            "Docker",
+            "AWS"
+        ],
+        "description": "Develop, train and deploy machine learning models for production AI systems."
+    },
+    {
+        "title": "Backend AI Developer",
+        "company": "Hugging Face",
+        "location": "Remote",
+        "level": "Junior",
+        "skills": [
+            "Python",
+            "FastAPI",
+            "PostgreSQL",
+            "Redis",
+            "Docker"
+        ],
+        "description": "Develop scalable backend services for AI products and APIs."
+    },
+    {
+        "title": "AI Platform Engineer",
+        "company": "Google DeepMind",
+        "location": "London",
+        "level": "Senior",
+        "skills": [
+            "Python",
+            "Kubernetes",
+            "Docker",
+            "GCP",
+            "TensorFlow"
+        ],
+        "description": "Build infrastructure supporting large scale AI research and deployment."
+    },
+    {
+        "title": "LLM Application Engineer",
+        "company": "Perplexity",
+        "location": "Remote",
+        "level": "Mid",
+        "skills": [
+            "Python",
+            "LangChain",
+            "RAG",
+            "Vector Databases",
+            "FastAPI"
+        ],
+        "description": "Design and deploy production-ready applications powered by large language models."
+    }
+]
