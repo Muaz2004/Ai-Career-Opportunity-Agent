@@ -18,6 +18,7 @@ from agents.graph import build_graph
 from agents.intent import is_career_related
 
 from rag.job_ingestion import ingest_jobs
+from agents.recommendation_agent import generate_recommendation
 
 
 # Load env first
@@ -55,6 +56,8 @@ def startup():
         llm=llm
     )
 
+class RecommendationRequest(BaseModel):
+    goal: str
 
 class AskRequest(BaseModel):
     query: str
@@ -138,3 +141,9 @@ def ingest_job_dataset():
         "message": "Job dataset ingested successfully",
         "documents_added": count
     }
+
+
+
+@app.post("/recommend")
+def recommend(req: RecommendationRequest):
+    return generate_recommendation(req.goal)
