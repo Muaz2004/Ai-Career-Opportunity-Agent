@@ -1,0 +1,250 @@
+[
+  {
+    "id": 1,
+    "title": "AI Career Intelligence Agent",
+    "difficulty": "Advanced",
+    "estimated_weeks": 12,
+    "required_skills": [
+      "Python",
+      "FastAPI",
+      "Git",
+      "LangChain",
+      "RAG"
+    ],
+    "learning_outcomes": [
+      "API development",
+      "Project architecture",
+      "Portfolio-ready implementation"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "RAG Document Assistant",
+    "difficulty": "Intermediate",
+    "estimated_weeks": 8,
+    "required_skills": [
+      "Python",
+      "FastAPI",
+      "Git",
+      "LangChain",
+      "RAG"
+    ],
+    "learning_outcomes": [
+      "API development",
+      "Project architecture",
+      "Portfolio-ready implementation"
+    ]
+  },
+  {
+    "id": 3,
+    "title": "AI Resume Analyzer",
+    "difficulty": "Intermediate",
+    "estimated_weeks": 8,
+    "required_skills": [
+      "Python",
+      "FastAPI",
+      "Git",
+      "LangChain",
+      "RAG"
+    ],
+    "learning_outcomes": [
+      "API development",
+      "Project architecture",
+      "Portfolio-ready implementation"
+    ]
+  },
+  {
+    "id": 4,
+    "title": "GitHub Trend Analyzer",
+    "difficulty": "Intermediate",
+    "estimated_weeks": 8,
+    "required_skills": [
+      "Python",
+      "FastAPI",
+      "Git"
+    ],
+    "learning_outcomes": [
+      "API development",
+      "Project architecture",
+      "Portfolio-ready implementation"
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Meeting Notes Summarizer",
+    "difficulty": "Beginner",
+    "estimated_weeks": 4,
+    "required_skills": [
+      "Python",
+      "FastAPI",
+      "Git"
+    ],
+    "learning_outcomes": [
+      "API development",
+      "Project architecture",
+      "Portfolio-ready implementation"
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Medical Appointment System",
+    "difficulty": "Intermediate",
+    "estimated_weeks": 8,
+    "required_skills": [
+      "Python",
+      "FastAPI",
+      "Git"
+    ],
+    "learning_outcomes": [
+      "API development",
+      "Project architecture",
+      "Portfolio-ready implementation"
+    ]
+  },
+  {
+    "id": 7,
+    "title": "AI Code Reviewer",
+    "difficulty": "Advanced",
+    "estimated_weeks": 12,
+    "required_skills": [
+      "Python",
+      "FastAPI",
+      "Git",
+      "LangChain",
+      "RAG"
+    ],
+    "learning_outcomes": [
+      "API development",
+      "Project architecture",
+      "Portfolio-ready implementation"
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Job Recommendation API",
+    "difficulty": "Intermediate",
+    "estimated_weeks": 8,
+    "required_skills": [
+      "Python",
+      "FastAPI",
+      "Git"
+    ],
+    "learning_outcomes": [
+      "API development",
+      "Project architecture",
+      "Portfolio-ready implementation"
+    ]
+  },
+  {
+    "id": 9,
+    "title": "Smart Study Planner",
+    "difficulty": "Beginner",
+    "estimated_weeks": 4,
+    "required_skills": [
+      "Python",
+      "FastAPI",
+      "Git"
+    ],
+    "learning_outcomes": [
+      "API development",
+      "Project architecture",
+      "Portfolio-ready implementation"
+    ]
+  },
+  {
+    "id": 10,
+    "title": "Multi-Agent Research Assistant",
+    "difficulty": "Advanced",
+    "estimated_weeks": 12,
+    "required_skills": [
+      "Python",
+      "FastAPI",
+      "Git"
+    ],
+    "learning_outcomes": [
+      "API development",
+      "Project architecture",
+      "Portfolio-ready implementation"
+    ]
+  },
+  {
+    "id": 11,
+    "title": "PDF Chat Application",
+    "difficulty": "Intermediate",
+    "estimated_weeks": 8,
+    "required_skills": [
+      "Python",
+      "FastAPI",
+      "Git"
+    ],
+    "learning_outcomes": [
+      "API development",
+      "Project architecture",
+      "Portfolio-ready implementation"
+    ]
+  },
+  {
+    "id": 12,
+    "title": "Image Caption Generator",
+    "difficulty": "Intermediate",
+    "estimated_weeks": 8,
+    "required_skills": [
+      "Python",
+      "FastAPI",
+      "Git"
+    ],
+    "learning_outcomes": [
+      "API development",
+      "Project architecture",
+      "Portfolio-ready implementation"
+    ]
+  },
+  {
+    "id": 13,
+    "title": "Personal Finance Dashboard",
+    "difficulty": "Beginner",
+    "estimated_weeks": 4,
+    "required_skills": [
+      "Python",
+      "FastAPI",
+      "Git"
+    ],
+    "learning_outcomes": [
+      "API development",
+      "Project architecture",
+      "Portfolio-ready implementation"
+    ]
+  },
+  {
+    "id": 14,
+    "title": "Network Monitoring Dashboard",
+    "difficulty": "Advanced",
+    "estimated_weeks": 12,
+    "required_skills": [
+      "Python",
+      "FastAPI",
+      "Git"
+    ],
+    "learning_outcomes": [
+      "API development",
+      "Project architecture",
+      "Portfolio-ready implementation"
+    ]
+  },
+  {
+    "id": 15,
+    "title": "Cloud Deployment Automation",
+    "difficulty": "Advanced",
+    "estimated_weeks": 12,
+    "required_skills": [
+      "Python",
+      "FastAPI",
+      "Git"
+    ],
+    "learning_outcomes": [
+      "API development",
+      "Project architecture",
+      "Portfolio-ready implementation"
+    ]
+  }
+]
