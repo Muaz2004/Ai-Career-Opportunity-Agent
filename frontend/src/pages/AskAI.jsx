@@ -20,21 +20,20 @@ export default function AskAI() {
   };
 
   return (
-    <div className="max-w-3xl mx-auto space-y-6 p-1">
-      {/* Header with animated ambient light instead of text icon */}
-      <div className="flex items-center gap-4 relative group">
-        <div className="absolute -inset-1 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-600 opacity-30 blur-md group-hover:opacity-50 transition duration-500"></div>
-        <div className="relative h-4 w-4 rounded-full bg-cyan-400 animate-pulse" />
-        <h1 className="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">
-          AI Career Agent
+    <div className="max-w-3xl mx-auto space-y-8">
+      {/* Header */}
+      <div className="flex items-center gap-3">
+        <div className="h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981]" />
+        <h1 className="text-2xl font-mono tracking-wider text-white uppercase">
+          Agent Query
         </h1>
       </div>
 
       {/* Input Group */}
-      <div className="flex gap-3 bg-slate-900/40 p-2 rounded-2xl border border-slate-800 backdrop-blur-xl shadow-2xl focus-within:border-blue-500/50 transition-all duration-300">
+      <div className="flex gap-3 bg-slate-950 p-2 rounded-xl border border-slate-900 focus-within:border-emerald-500/30 transition-all duration-300">
         <input
-          className="w-full bg-transparent px-4 py-3 rounded-xl text-slate-100 placeholder-slate-500 outline-none"
-          placeholder="Ask anything about your career path..."
+          className="w-full bg-transparent px-4 py-3 font-mono text-sm text-slate-100 placeholder-slate-600 outline-none"
+          placeholder="ENTER INQUIRY..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && ask()}
@@ -42,30 +41,30 @@ export default function AskAI() {
         <button
           onClick={ask}
           disabled={loading}
-          className="relative group overflow-hidden bg-gradient-to-r from-blue-600 to-cyan-500 px-6 py-3 rounded-xl font-medium text-white shadow-lg shadow-blue-500/20 active:scale-95 transition-all duration-200 disabled:opacity-50"
+          className="bg-emerald-500 hover:bg-emerald-400 text-black font-mono font-bold text-xs tracking-widest uppercase px-6 py-3 rounded-lg transition-all duration-200 active:scale-95 disabled:opacity-40"
         >
-          <span className="relative z-10">Ask</span>
-          <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+          Execute
         </button>
       </div>
 
-      {/* Modern Wave Loading Animation */}
+      {/* Dynamic Processing Status */}
       {loading && (
-        <div className="flex items-center gap-2 px-4 py-3 bg-slate-900/20 rounded-xl border border-slate-800/50 w-max animate-fade-in">
-          <span className="text-sm text-slate-400 font-medium">Analyzing</span>
-          <div className="flex gap-1 items-center h-4">
-            <div className="w-1 h-2 bg-blue-400 rounded-full animate-bounce [animation-delay:-0.3s]" />
-            <div className="w-1 h-3 bg-cyan-400 rounded-full animate-bounce [animation-delay:-0.15s]" />
-            <div className="w-1 h-2 bg-blue-500 rounded-full animate-bounce" />
+        <div className="flex items-center gap-3 px-4 py-3 bg-slate-950 rounded-xl border border-slate-900 w-max">
+          <span className="font-mono text-xs uppercase text-slate-500 tracking-widest animate-pulse">Analyzing Data</span>
+          <div className="flex gap-1 items-center h-3">
+            <div className="w-1 h-2 bg-emerald-500 rounded-full animate-bounce [animation-delay:-0.3s]" />
+            <div className="w-1 h-3 bg-emerald-400 rounded-full animate-bounce [animation-delay:-0.15s]" />
+            <div className="w-1 h-2 bg-emerald-500 rounded-full animate-bounce" />
           </div>
         </div>
       )}
 
-      {/* Response Box */}
+      {/* Response Display Box */}
       {response && !loading && (
-        <div className="relative overflow-hidden bg-gradient-to-b from-slate-900/60 to-slate-950/60 p-6 rounded-2xl border border-slate-800 shadow-xl transition-all duration-500 animate-slide-up">
-          <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-blue-500 to-cyan-500" />
-          <p className="text-slate-300 leading-relaxed whitespace-pre-wrap text-sm md:text-base">
+        <div className="relative overflow-hidden bg-slate-950 p-6 rounded-xl border border-slate-900 transition-all duration-500">
+          <div className="absolute top-0 left-0 w-[2px] h-full bg-emerald-500 shadow-[0_0_8px_#10b981]" />
+          <div className="font-mono text-[10px] text-emerald-500 uppercase tracking-widest mb-3">Output Stream</div>
+          <p className="text-slate-300 font-sans leading-relaxed whitespace-pre-wrap text-sm md:text-base">
             {response}
           </p>
         </div>
