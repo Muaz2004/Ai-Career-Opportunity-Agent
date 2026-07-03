@@ -19,7 +19,6 @@ export default function System() {
 
   async function checkHealth() {
     setLoadingHealth(true);
-
     try {
       const res = await axios.get(`${API}/health`);
       setHealth(res.data);
@@ -27,214 +26,137 @@ export default function System() {
       console.error(err);
       setHealth(null);
     }
-
     setLoadingHealth(false);
   }
 
   async function ingestGithub() {
     setGithubLoading(true);
-
     try {
       const res = await axios.post(`${API}/ingest`);
-
       setGithubResult(res.data);
     } catch (err) {
       console.error(err);
     }
-
     setGithubLoading(false);
   }
 
   async function ingestJobs() {
     setJobsLoading(true);
-
     try {
       const res = await axios.post(`${API}/ingest/jobs`);
-
       setJobsResult(res.data);
     } catch (err) {
       console.error(err);
     }
-
     setJobsLoading(false);
   }
 
   return (
-    <div className="space-y-8">
-
+    <div className="max-w-4xl mx-auto space-y-8">
       <div className="flex items-center gap-3">
-        <div className="h-3 w-3 rounded-full bg-emerald-400 animate-pulse" />
-
-        <h1 className="text-3xl font-extrabold bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">
+        <div className="h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981]" />
+        <h1 className="text-2xl font-mono tracking-wider text-white uppercase">
           System Control Center
         </h1>
       </div>
 
-      {/* HEALTH */}
-
-      <div className="bg-slate-900/50 rounded-2xl border border-slate-800 p-6">
-
-        <div className="flex justify-between items-center">
-
-          <div>
-            <h2 className="text-xl font-bold text-white">
-              Backend Health
+      {/* CORE FRAMEWORK SUB-BOXES */}
+      <div className="space-y-6">
+        
+        {/* HEALTH CONTAINER */}
+        <div className="bg-slate-950 rounded-xl border border-slate-900 p-6 flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div className="space-y-1">
+            <h2 className="font-mono text-sm uppercase tracking-wide text-white font-bold">
+              Backend Integrity
             </h2>
-
-            <p className="text-slate-400 text-sm mt-1">
-              Verify the FastAPI server status.
+            <p className="text-slate-500 text-xs font-mono">
+              Monitor active REST endpoints.
             </p>
+            <div className="pt-2">
+              {loadingHealth ? (
+                <span className="font-mono text-xs text-slate-600 animate-pulse uppercase">Querying Node...</span>
+              ) : health ? (
+                <div className="flex items-center gap-2 font-mono text-xs text-emerald-400">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 shadow-[0_0_6px_#10b981]" />
+                  <span>ONLINE // STATUS: {health.status}</span>
+                </div>
+              ) : (
+                <div className="flex items-center gap-2 font-mono text-xs text-red-500">
+                  <span className="h-1.5 w-1.5 rounded-full bg-red-500" />
+                  <span>DISCONNECTED</span>
+                </div>
+              )}
+            </div>
           </div>
-
           <button
             onClick={checkHealth}
-            className="px-5 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 transition"
+            className="md:self-center border border-slate-800 hover:border-emerald-500/40 text-slate-400 hover:text-emerald-400 font-mono text-xs uppercase tracking-widest px-4 py-2.5 rounded transition-all duration-200"
           >
-            Refresh
+            Ping
           </button>
-
         </div>
 
-        <div className="mt-6">
-
-          {loadingHealth ? (
-
-            <p className="text-slate-400">
-              Checking server...
-            </p>
-
-          ) : health ? (
-
-            <div className="flex items-center gap-3">
-
-              <div className="h-3 w-3 rounded-full bg-green-500 animate-pulse"/>
-
-              <span className="text-green-400 font-semibold">
-                Server Online
-              </span>
-
-              <span className="text-slate-500">
-                Status : {health.status}
-              </span>
-
+        {/* GITHUB INGEST */}
+        <div className="bg-slate-950 rounded-xl border border-slate-900 p-6 space-y-4">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="space-y-1">
+              <h2 className="font-mono text-sm uppercase tracking-wide text-white font-bold">
+                Knowledge Ingestion Pipeline
+              </h2>
+              <p className="text-slate-500 text-xs font-mono">
+                Synchronize external dataset metrics directly into native local vectors.
+              </p>
             </div>
+            <button
+              onClick={ingestGithub}
+              disabled={githubLoading}
+              className="bg-emerald-500 hover:bg-emerald-400 disabled:opacity-30 text-black font-mono font-bold text-xs tracking-widest uppercase px-5 py-2.5 rounded transition-all duration-200"
+            >
+              {githubLoading ? "Processing" : "Sync Database"}
+            </button>
+          </div>
 
-          ) : (
-
-            <div className="flex items-center gap-3">
-
-              <div className="h-3 w-3 rounded-full bg-red-500"/>
-
-              <span className="text-red-400">
-                Backend Offline
-              </span>
-
+          {githubResult && (
+            <div className="rounded-lg bg-[#030712] border border-slate-900 p-4 font-mono text-xs space-y-1.5 animate-slide-up">
+              <p className="text-emerald-400 font-bold tracking-wide">// {githubResult.message}</p>
+              <p className="text-slate-500">
+                Payload blocks allocated: <span className="text-slate-200 font-bold">{githubResult.documents_added}</span>
+              </p>
             </div>
-
           )}
+        </div>
 
+        {/* JOB INGEST */}
+        <div className="bg-slate-950 rounded-xl border border-slate-900 p-6 space-y-4">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="space-y-1">
+              <h2 className="font-mono text-sm uppercase tracking-wide text-white font-bold">
+                Market Datasets
+              </h2>
+              <p className="text-slate-500 text-xs font-mono">
+                Populate active metrics matrices from global contextual career maps.
+              </p>
+            </div>
+            <button
+              onClick={ingestJobs}
+              disabled={jobsLoading}
+              className="bg-emerald-500 hover:bg-emerald-400 disabled:opacity-30 text-black font-mono font-bold text-xs tracking-widest uppercase px-5 py-2.5 rounded transition-all duration-200"
+            >
+              {jobsLoading ? "Mapping" : "Import Index"}
+            </button>
+          </div>
+
+          {jobsResult && (
+            <div className="rounded-lg bg-[#030712] border border-slate-900 p-4 font-mono text-xs space-y-1.5 animate-slide-up">
+              <p className="text-emerald-400 font-bold tracking-wide">// {jobsResult.message}</p>
+              <p className="text-slate-500">
+                Payload blocks allocated: <span className="text-slate-200 font-bold">{jobsResult.documents_added}</span>
+              </p>
+            </div>
+          )}
         </div>
 
       </div>
-
-      {/* GITHUB INGEST */}
-
-      <div className="bg-slate-900/50 rounded-2xl border border-slate-800 p-6">
-
-        <div className="flex justify-between items-center">
-
-          <div>
-
-            <h2 className="text-xl font-bold text-white">
-              GitHub Knowledge Base
-            </h2>
-
-            <p className="text-slate-400 text-sm mt-1">
-              Download trending repositories and insert them into the vector database.
-            </p>
-
-          </div>
-
-          <button
-            onClick={ingestGithub}
-            disabled={githubLoading}
-            className="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 disabled:opacity-50 transition"
-          >
-            {githubLoading ? "Ingesting..." : "Run Ingestion"}
-          </button>
-
-        </div>
-
-        {githubResult && (
-
-          <div className="mt-6 rounded-xl bg-slate-950 border border-slate-800 p-4">
-
-            <p className="text-green-400 font-semibold">
-              {githubResult.message}
-            </p>
-
-            <p className="text-slate-300 mt-2">
-              Documents Added :
-              <span className="text-blue-400 font-bold ml-2">
-                {githubResult.documents_added}
-              </span>
-            </p>
-
-          </div>
-
-        )}
-
-      </div>
-
-      {/* JOB INGEST */}
-
-      <div className="bg-slate-900/50 rounded-2xl border border-slate-800 p-6">
-
-        <div className="flex justify-between items-center">
-
-          <div>
-
-            <h2 className="text-xl font-bold text-white">
-              Job Dataset
-            </h2>
-
-            <p className="text-slate-400 text-sm mt-1">
-              Import the AI career job dataset into the vector database.
-            </p>
-
-          </div>
-
-          <button
-            onClick={ingestJobs}
-            disabled={jobsLoading}
-            className="px-5 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 disabled:opacity-50 transition"
-          >
-            {jobsLoading ? "Importing..." : "Import Jobs"}
-          </button>
-
-        </div>
-
-        {jobsResult && (
-
-          <div className="mt-6 rounded-xl bg-slate-950 border border-slate-800 p-4">
-
-            <p className="text-green-400 font-semibold">
-              {jobsResult.message}
-            </p>
-
-            <p className="text-slate-300 mt-2">
-              Documents Added :
-              <span className="text-purple-400 font-bold ml-2">
-                {jobsResult.documents_added}
-              </span>
-            </p>
-
-          </div>
-
-        )}
-
-      </div>
-
     </div>
   );
 }
