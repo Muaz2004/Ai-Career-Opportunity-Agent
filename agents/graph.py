@@ -110,25 +110,38 @@ Now answer in this format:
 
 def strategy_agent(state: AgentState, llm: LLMClient):
 
-    prompt = f"""
-You are an AI career strategist.
+    prompt = f""" You are an AI career strategist.
 
-Based ONLY on this analysis:
+Based ONLY on the analysis below:
 
 {state["analysis"]}
 
-Generate career recommendations.
+Create practical career advice.
 
-Return STRICT JSON:
+IMPORTANT:
+- Do NOT output JSON.
+- Do NOT output Markdown code blocks.
+- Write naturally for a human reader.
+- Keep it concise.
 
-{{
-  "must_learn": [],
-  "good_to_learn": [],
-  "project_ideas": [],
-  "avoid": [],
-  "roadmap": []
-}}
-"""
+Use this format:
+
+🎯 Priority Skills
+- ...
+
+📚 Recommended Learning Order
+1.
+2.
+3.
+
+⚠️ Common Mistakes to Avoid
+- ...
+
+💼 Portfolio Projects
+- ...
+
+🎯 Long-Term Goal
+...   """
 
     response = llm.invoke(prompt)
 
