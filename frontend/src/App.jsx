@@ -13,6 +13,8 @@ export default function App() {
         return <AskAI />;
       case "recommend":
         return <Recommend />;
+      case "system":
+        return <System />;
       default:
         return <Dashboard />;
     }
@@ -22,6 +24,7 @@ export default function App() {
     { id: "dashboard", label: "Dashboard", lightColor: "bg-blue-400" },
     { id: "ask", label: "Ask AI Agent", lightColor: "bg-cyan-400" },
     { id: "recommend", label: "Career Strategy", lightColor: "bg-purple-500" },
+    { id: "system", label: "System", lightColor: "bg-emerald-400" },
   ];
 
   return (
