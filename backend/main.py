@@ -19,7 +19,7 @@ from agents.intent import is_career_related
 
 from rag.job_ingestion import ingest_jobs
 from agents.recommendation_agent import generate_recommendation
-
+from fastapi.middleware.cors import CORSMiddleware
 
 # Load env first
 load_dotenv(
@@ -33,6 +33,17 @@ load_dotenv(
 app = FastAPI(
     title="AI Career Agent",
     version="1.0.0"
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+        "http://127.0.0.1:5173"
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 

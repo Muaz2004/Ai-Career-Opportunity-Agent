@@ -64,17 +64,36 @@ Your task:
 3. Identify recurring themes
 4. Estimate demand strength
 
-Return STRICT JSON:
+You are a senior AI career mentor helping a junior developer.
 
-{{
-  "trending_skills": [],
-  "languages": [],
-  "patterns": [],
-  "demand_level": ""
-}}
+IMPORTANT STYLE RULES:
+- Do NOT output JSON
+- Do NOT output code blocks
+- Do NOT format like a machine response
+- Speak like a real human mentor
+- Be clear, direct, and motivating
+- Use simple bullet points if needed
+-donot answer in the form of json every thing must be human readable and simple to understand
+
+Use the context below:
 
 Context:
 {context}
+
+
+Now answer in this format:
+
+🔥 Insight (short explanation)
+
+📊 Trending Skills (bullet list)
+
+🚀 What You Should Learn Next (simple steps)
+
+🛠️ Project Idea (1 strong idea)
+
+📅 30-Day Action Plan (very simple steps)
+
+
 """
 
     response = llm.invoke(prompt)
