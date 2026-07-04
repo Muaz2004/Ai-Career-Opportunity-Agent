@@ -52,7 +52,6 @@ def get_user_chats(
         .all()
     )
 
-
 def save_message(
     db: Session,
     session_id: int,
@@ -69,6 +68,14 @@ def save_message(
     db.add(message)
     db.commit()
     db.refresh(message)
+
+    # AUTO CHAT TITLE LOGIC (ADD THIS)
+    chat = db.query(ChatSession).filter(ChatSession.id == session_id).first()
+
+    if chat and (chat.title == "New Chat" or chat.title is None):
+        chat.title = generate_title(content)
+        db.commit()
+        db.refresh(chat)
 
     return message
 
@@ -107,3 +114,7 @@ def delete_chat(
 
     db.delete(chat)
     db.commit()
+
+
+def generate_title(message: str):
+    return message[:30] + "..." if len(message) > 30 else message

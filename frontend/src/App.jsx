@@ -3,18 +3,22 @@ import Dashboard from "./pages/Dashboard";
 import AskAI from "./pages/AskAI";
 import Recommend from "./pages/Recommend";
 import System from "./pages/System";
+import Login from "./pages/Login";
+import { useAuth } from "./context/AuthContext";
+import ChatPage from "./pages/ChatPage";
 
 export default function App() {
   const [tab, setTab] = useState("dashboard");
+  const { token } = useAuth();
 
   const renderPage = () => {
     switch (tab) {
-      case "ask":
-        return <AskAI />;
       case "recommend":
         return <Recommend />;
       case "system":
         return <System />;
+      case "chat":
+        return <ChatPage />;
       default:
         return <Dashboard />;
     }
@@ -22,10 +26,16 @@ export default function App() {
 
   const tabs = [
     { id: "dashboard", label: "Dashboard" },
-    { id: "ask", label: "Ask Agent" },
+     { id: "chat", label: "Ask Agent" } ,
     { id: "recommend", label: "Strategy" },
     { id: "system", label: "System" },
+   
   ];
+
+  // 🔐 AUTH GATE (ONLY ADDITION)
+  if (!token) {
+    return <Login />;
+  }
 
   return (
     <div className="min-h-screen bg-[#030712] text-slate-100 flex flex-col font-sans antialiased selection:bg-emerald-500 selection:text-black">
