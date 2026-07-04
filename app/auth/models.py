@@ -3,6 +3,7 @@ from sqlalchemy import Integer
 from sqlalchemy import String
 from sqlalchemy import DateTime
 from sqlalchemy.sql import func
+from sqlalchemy.orm import relationship
 
 from app.database import Base
 
@@ -42,4 +43,11 @@ class User(Base):
     created_at = Column(
         DateTime(timezone=True),
         server_default=func.now()
+
+    
     )
+    chat_sessions = relationship(
+    "ChatSession",
+    back_populates="user",
+    cascade="all, delete-orphan"
+)
