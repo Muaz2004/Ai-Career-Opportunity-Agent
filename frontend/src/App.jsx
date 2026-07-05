@@ -6,10 +6,13 @@ import System from "./pages/System";
 import Login from "./pages/Login";
 import { useAuth } from "./context/AuthContext";
 import ChatPage from "./pages/ChatPage";
+import Profile from "./pages/Profile";
+
 
 export default function App() {
   const [tab, setTab] = useState("dashboard");
   const { token } = useAuth();
+  const {logout} = useAuth();
 
   const renderPage = () => {
     switch (tab) {
@@ -19,6 +22,8 @@ export default function App() {
         return <System />;
       case "chat":
         return <ChatPage />;
+      case "profile":
+        return <Profile />;
       default:
         return <Dashboard />;
     }
@@ -29,6 +34,7 @@ export default function App() {
      { id: "chat", label: "Ask Agent" } ,
     { id: "recommend", label: "Strategy" },
     { id: "system", label: "System" },
+    { id: "profile", label: "Profile" },
    
   ];
 
@@ -80,8 +86,10 @@ export default function App() {
             <span>Online</span>
             <span className="h-1 w-1 rounded-full bg-emerald-500 animate-ping" />
           </div>
+                
 
         </div>
+        
       </header>
 
       {/* WORKSPACE CONTENT VIEWPORT */}
