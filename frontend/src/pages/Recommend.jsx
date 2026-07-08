@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import api from "../utils/api";
 
 export default function Recommend() {
@@ -7,20 +7,6 @@ export default function Recommend() {
   const [loading, setLoading] = useState(false);
   const [sessionId, setSessionId] = useState(null);
 
-  // OPTIONAL: create session for history grouping
-  useEffect(() => {
-    const init = async () => {
-      try {
-        const res = await api.post("/chat/new");
-        setSessionId(res.data.session_id);
-      } catch (err) {
-        console.error("Session init failed:", err);
-      }
-    };
-
-    init();
-  }, []);
-
   const getRec = async () => {
     if (!goal.trim()) return;
 
@@ -28,12 +14,24 @@ export default function Recommend() {
     setData("");
 
     try {
+
+      let currentSession = sessionId;
+
+      // Create chat only when user actually generates recommendation
+      if (!currentSession) {
+        const chatRes = await api.post("/chat/new");
+
+        currentSession = chatRes.data.session_id;
+        setSessionId(currentSession);
+      }
+
       const res = await api.post("/recommend", {
         goal,
-        session_id: sessionId
+        session_id: currentSession
       });
 
       setData(res.data.recommendation);
+
     } catch (err) {
       console.error("Recommend error:", err.response?.data || err.message);
       setData("Something went wrong.");
