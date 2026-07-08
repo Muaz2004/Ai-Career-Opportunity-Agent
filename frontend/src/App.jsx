@@ -7,12 +7,12 @@ import Login from "./pages/Login";
 import { useAuth } from "./context/AuthContext";
 import ChatPage from "./pages/ChatPage";
 import Profile from "./pages/Profile";
-
+import Auth from "./pages/Auth";
 
 export default function App() {
   const [tab, setTab] = useState("dashboard");
   const { token } = useAuth();
-  const {logout} = useAuth();
+  
 
   const renderPage = () => {
     switch (tab) {
@@ -38,9 +38,9 @@ export default function App() {
    
   ];
 
-  // 🔐 AUTH GATE (ONLY ADDITION)
+  //  AUTH GATE 
   if (!token) {
-    return <Login />;
+    return <Auth />;
   }
 
   return (

@@ -2,7 +2,7 @@ import { useState } from "react";
 import api from "../utils/api";
 import { useAuth } from "../context/AuthContext";
 
-export default function Login() {
+export default function Login({ switchToSignup }) {
   const [email, setEmail] = useState("user@example.com");
   const [password, setPassword] = useState("string");
   const [loading, setLoading] = useState(false);
@@ -105,6 +105,18 @@ export default function Login() {
           >
             {loading ? "Verifying..." : "Establish Link"}
           </button>
+
+                    <p className="text-xs text-slate-500 text-center pt-2">
+  Don't have an account?{" "}
+  <span
+    onClick={switchToSignup}
+    className="text-emerald-500 cursor-pointer hover:underline"
+  >
+    Create one
+  </span>
+</p>
+
+          
 
         </div>
       </div>
