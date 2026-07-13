@@ -8,26 +8,35 @@ import { useAuth } from "./context/AuthContext";
 import ChatPage from "./pages/ChatPage";
 import Profile from "./pages/Profile";
 import Auth from "./pages/Auth";
-
+import GoogleSuccess from "./pages/GoogleSuccess";
 export default function App() {
   const [tab, setTab] = useState("dashboard");
   const { token } = useAuth();
   
 
   const renderPage = () => {
-    switch (tab) {
-      case "recommend":
-        return <Recommend />;
-      case "system":
-        return <System />;
-      case "chat":
-        return <ChatPage />;
-      case "profile":
-        return <Profile />;
-      default:
-        return <Dashboard />;
-    }
-  };
+
+  if (window.location.pathname === "/google-success") {
+    return <GoogleSuccess />;
+  }
+
+  switch (tab) {
+    case "recommend":
+      return <Recommend />;
+
+    case "system":
+      return <System />;
+
+    case "chat":
+      return <ChatPage />;
+
+    case "profile":
+      return <Profile />;
+
+    default:
+      return <Dashboard />;
+  }
+};
 
   const tabs = [
     { id: "dashboard", label: "Dashboard" },
@@ -39,10 +48,9 @@ export default function App() {
   ];
 
   //  AUTH GATE 
-  if (!token) {
-    return <Auth />;
-  }
-
+  if (!token && window.location.pathname !== "/google-success") {
+  return <Auth />;
+}
   return (
     <div className="min-h-screen bg-[#030712] text-slate-100 flex flex-col font-sans antialiased selection:bg-emerald-500 selection:text-black">
       

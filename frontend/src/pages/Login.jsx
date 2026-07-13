@@ -1,6 +1,7 @@
 import { useState } from "react";
 import api from "../utils/api";
 import { useAuth } from "../context/AuthContext";
+import { GoogleLogin } from "@react-oauth/google";
 
 export default function Login({ switchToSignup }) {
   const [email, setEmail] = useState("user@example.com");
@@ -8,6 +9,13 @@ export default function Login({ switchToSignup }) {
   const [loading, setLoading] = useState(false);
 
   const { login } = useAuth();
+  const handleGoogleSuccess = async (credentialResponse) => {
+  try {
+    window.location.href = "http://localhost:8000/auth/google/login";
+  } catch (err) {
+    console.error("Google authentication failed:", err);
+  }
+};
 
   const handleLogin = async () => {
     setLoading(true);
@@ -105,6 +113,14 @@ export default function Login({ switchToSignup }) {
           >
             {loading ? "Verifying..." : "Establish Link"}
           </button>
+          <div className="flex justify-center pt-3">
+  <GoogleLogin
+    onSuccess={handleGoogleSuccess}
+    onError={() => {
+      console.error("Google Login Failed");
+    }}
+  />
+</div>
 
                     <p className="text-xs text-slate-500 text-center pt-2">
   Don't have an account?{" "}

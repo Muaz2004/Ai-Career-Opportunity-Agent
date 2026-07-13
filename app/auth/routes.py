@@ -13,6 +13,10 @@ from app.auth.service import create_user
 from app.auth.service import login_user
 
 from app.auth.dependencies import get_current_user
+from fastapi import Request
+from app.auth.google import oauth
+from app.auth.service import google_login_user
+from fastapi.responses import RedirectResponse
 
 router = APIRouter(
     prefix="/auth",
@@ -87,3 +91,35 @@ def me(
 ):
 
     return current_user
+
+
+@router.get("/google/login")
+async def google_login(request: Request):
+
+    redirect_uri = "http://localhost:8000/auth/google/callback"
+
+    return await oauth.google.authorize_redirect(
+        request,
+        redirect_uri
+    )
+
+@router.get("/google/callback")
+async def google_callback(
+    request: Request,
+    db: Session = Depends(get_db)
+):
+
+    token = await oauth.google.authorize_access_token(request)
+
+    google_user = token["userinfo"]
+
+    result = google_login_user(
+        db,
+        google_user
+    )
+
+    access_token = result["access_token"]
+
+    return RedirectResponse(
+        url=f"http://localhost:5173/google-success?token={access_token}"
+    )

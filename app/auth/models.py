@@ -31,7 +31,7 @@ class User(Base):
 
     password = Column(
         String,
-        nullable=False
+        nullable=True
     )
 
     provider = Column(
