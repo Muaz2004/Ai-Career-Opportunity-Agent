@@ -531,7 +531,6 @@ This makes each part independently testable and allows future improvements witho
 ## Phase 7 — Deployment
 
 * [ ] Production configuration
-* [ ] Docker
 * [ ] Cloud deployment
 * [ ] Public API
 * [ ] Monitoring
