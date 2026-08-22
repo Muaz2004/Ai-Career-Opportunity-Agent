@@ -1,4 +1,4 @@
-# 🧠 AI Career Intelligence Agent
+# AI Career Intelligence Agent
 
 An AI-powered career intelligence system that analyzes technology trends, GitHub data, job-related signals, and curated knowledge to help developers decide **what to learn, what to build, and what to focus on next**.
 
@@ -6,7 +6,7 @@ The project combines **FastAPI, LangChain, LangGraph, RAG, ChromaDB, embeddings,
 
 ---
 
-## 🎯 Project Goal
+## Project Goal
 
 Technology changes quickly. Developers often struggle to answer questions such as:
 
@@ -26,13 +26,13 @@ The AI Career Intelligence Agent analyzes available technology signals and trans
 
 **Agent:**
 
-> 🔥 Trending skills: Python, TypeScript, AI agents
-> 🚀 Recommended project: Build a tool-using AI agent
-> 🎯 Priority: Learn RAG, LangGraph, API integration, and vector databases
+>  Trending skills: Python, TypeScript, AI agents
+>  Recommended project: Build a tool-using AI agent
+>  Priority: Learn RAG, LangGraph, API integration, and vector databases
 
 ---
 
-# 🏗️ Architecture
+#  Architecture
 
 ```text
                     ┌──────────────────┐
@@ -71,7 +71,7 @@ The AI Career Intelligence Agent analyzes available technology signals and trans
 
 ---
 
-# 🔥 Core Technologies
+#  Core Technologies
 
 | Technology                  | Purpose                             |
 | --------------------------- | ----------------------------------- |
@@ -88,7 +88,7 @@ The AI Career Intelligence Agent analyzes available technology signals and trans
 
 ---
 
-# 📂 Project Structure
+#  Project Structure
 
 ```text
 ai-career-agent/
@@ -123,7 +123,7 @@ ai-career-agent/
 
 ---
 
-# 🧩 System Components
+#  System Components
 
 ## 1. GitHub Data Layer
 
@@ -163,7 +163,7 @@ This allows the system to combine live technology signals with structured knowle
 
 ---
 
-# 🧠 RAG Pipeline
+#  RAG Pipeline
 
 The Retrieval-Augmented Generation system works approximately like this:
 
@@ -246,7 +246,7 @@ Produces a clean career intelligence report.
 
 ---
 
-# 🛡️ Intent Filtering
+#  Intent Filtering
 
 The system is designed specifically for technology and career-related questions.
 
@@ -270,7 +270,7 @@ This prevents unrelated questions from unnecessarily triggering the RAG and agen
 
 ---
 
-# 🚀 API Endpoints
+#  API Endpoints
 
 ## `GET /`
 
@@ -351,7 +351,7 @@ Intent
 
 ---
 
-# ⚙️ Installation
+#  Installation
 
 Clone the repository:
 
@@ -380,7 +380,7 @@ pip install -r requirements.txt
 
 ---
 
-# 🔐 Environment Variables
+#  Environment Variables
 
 Create a `.env` file:
 
@@ -401,7 +401,7 @@ chroma_db/
 
 ---
 
-# ▶️ Running the Application
+#  Running the Application
 
 Start the FastAPI server:
 
@@ -426,7 +426,7 @@ Recommended testing order:
 
 ---
 
-# 🧪 Example Questions
+#  Example Questions
 
 ### Career
 
@@ -454,7 +454,7 @@ Give me a roadmap for becoming an AI engineer.
 
 ---
 
-# 🧠 Design Philosophy
+#  Design Philosophy
 
 This project follows an important principle:
 
@@ -478,7 +478,7 @@ This makes each part independently testable and allows future improvements witho
 
 ---
 
-# 🔮 Roadmap
+#  Roadmap
 
 ## Phase 1 — Foundation
 
