@@ -1,4 +1,4 @@
-# 🧠 AI Career Intelligence Agent — Frontend
+# AI Career Intelligence Agent — Frontend
 
 React frontend for the **AI Career Intelligence Agent**, an AI-powered system that helps developers understand technology trends and decide what to learn and build next.
 
@@ -6,7 +6,7 @@ The frontend communicates with the FastAPI backend and presents career intellige
 
 ---
 
-## 🚀 Tech Stack
+##  Tech Stack
 
 * **React**
 * **Vite**
@@ -17,7 +17,7 @@ The frontend communicates with the FastAPI backend and presents career intellige
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ```text
 React Frontend
@@ -39,7 +39,7 @@ ChromaDB  LLM
 
 ---
 
-## 🎯 Main Features
+##  Main Features
 
 The frontend will provide interfaces for:
 
@@ -52,7 +52,7 @@ The frontend will provide interfaces for:
 
 ---
 
-## 📂 Project Structure
+##  Project Structure
 
 ```text
 frontend/
@@ -82,7 +82,7 @@ npm install
 
 ---
 
-## ▶️ Development
+## Development
 
 Start the development server:
 
@@ -124,7 +124,7 @@ The backend processes the request through the AI Career Intelligence pipeline an
 
 ---
 
-## 🧠 User Flow
+##  User Flow
 
 ```text
 User
@@ -158,7 +158,7 @@ React UI
 
 ---
 
-## 🚧 Development Roadmap
+##  Development Roadmap
 
 ### Current
 
@@ -182,7 +182,7 @@ React UI
 
 ---
 
-## 🎯 Project Goal
+## Project Goal
 
 The frontend is designed to turn the AI Career Intelligence Agent from a backend API into a usable product.
 
